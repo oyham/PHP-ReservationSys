@@ -35,7 +35,6 @@ include 'includes/header.php';
                 <tr>
                     <th>Número</th>
                     <th>Tipo</th>
-                    <th>Estado</th>
                     <th>Reservar</th>
                 </tr>
                 <?php foreach ($response['rooms'] as $room): ?>
@@ -45,9 +44,6 @@ include 'includes/header.php';
                         </td>
                         <td>
                             <?= $room['tipo'] ?>
-                        </td>
-                        <td>
-                            <?= $room['estado'] ?>
                         </td>
                         <td>
                             <button onclick="reservarHabitacion(this)" class="reservar-btn" data-habitacion-id="<?= $room['id'] ?>"
