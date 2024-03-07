@@ -6,7 +6,7 @@
 
 2- Proceso de Reserva (Backend):
 
-- Verifica la disponibilidad de la habitación para las fechas seleccionadas.
+- Verifica la disponibilidad de la habitación para las fechas seleccionadas. (Agregar SQL para multiples fechas)❗
 - Registra la reserva en la base de datos y actualiza el estado de la habitación.
 - Envía un correo electrónico de confirmación al usuario (PHPMailer).
 
