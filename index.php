@@ -47,8 +47,8 @@ include 'includes/header.php';
                         </td>
                         <td>
                             <button onclick="reservarHabitacion(this)" class="reservar-btn" data-habitacion-id="<?= $room['id'] ?>"
-                                data-fecha-inicio="<?= $room['fecha_inicio'] ?>"
-                                data-fecha-fin="<?= $room['fecha_fin'] ?>">Reservar</button>
+                                data-fecha-inicio="<?= $response['fechaInicio'] ?>"
+                                data-fecha-fin="<?= $response['fechaFin'] ?>">Reservar</button>
                         </td>
                         <script>
                             // Función para manejar el clic del botón
