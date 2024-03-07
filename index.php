@@ -72,9 +72,7 @@ include 'includes/header.php';
                                 })
                                     .then(response => response.json())
                                     .then(data => {
-                                        // Manejar la respuesta según sea necesario
                                         console.log(data);
-                                        // Puedes realizar acciones adicionales o redireccionar si es necesario
                                     })
                                     .catch(error => {
                                         console.error('Error al realizar la reserva:', error);

@@ -5,8 +5,6 @@ include 'db.php';
 $fechaInicio = $_POST['fecha_inicio'];
 $fechaFin = $_POST['fecha_fin'];
 $tipoHabitacion = isset($_POST['tipo_habitacion']) ? $_POST['tipo_habitacion'] : null;
-// $tipoHabitacionClause = $tipoHabitacion ? "AND tipo = '$tipoHabitacion'" : "";
-
 
 $sql = "SELECT h.id, h.numero, h.tipo
         FROM habitaciones h
@@ -16,6 +14,11 @@ $sql = "SELECT h.id, h.numero, h.tipo
             WHERE h.id = r.id_habitacion
                 AND ('$fechaInicio' < r.fecha_fin AND '$fechaFin' > r.fecha_inicio)
         )";
+
+if ($tipoHabitacion) {
+    $sql .= " AND h.tipo = '$tipoHabitacion'";
+}
+
 
 $result = $conn->query($sql);
 
@@ -28,13 +31,11 @@ if ($result->num_rows > 0) {
             'id' => $row["id"],
             'numero' => $row["numero"],
             'tipo' => $row["tipo"],
-            /* 'fecha_inicio' => $row["fecha_inicio"],
-            'fecha_fin' => $row["fecha_fin"] */
         );
     }
 
     $response['status'] = 'success';
-    $response['message'] = "Habitaciones Disponibles para entre $fechaInicio y $fechaFin";
+    $response['message'] = "Habitaciones Disponibles para entre " . date('d/m/Y', strtotime($fechaInicio)) . " y " . date('d/m/Y', strtotime($fechaFin));
     $response["fechaInicio"] = $fechaInicio;
     $response["fechaFin"] = $fechaFin;
     $response['rooms'] = $rooms;
