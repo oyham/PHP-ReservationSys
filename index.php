@@ -72,6 +72,7 @@ include 'includes/header.php';
                                 })
                                     .then(response => response.json())
                                     .then(data => {
+                                        // Manejar la respuesta según sea necesario
                                         console.log(data);
                                     })
                                     .catch(error => {
