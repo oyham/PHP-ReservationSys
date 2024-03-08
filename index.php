@@ -74,6 +74,30 @@ include 'includes/header.php';
                                     .then(data => {
                                         // Manejar la respuesta según sea necesario
                                         console.log(data);
+                                        // Crear el formulario si la respuesta está en estado 'pending'
+                                        if (data.status === 'pending') {
+                                            const form = document.createElement('form');
+                                            form.innerHTML = `
+                                                            <h2>Formulario de Completar Datos</h2>
+                                                            <label for="nombre">Nombre:</label>
+                                                            <input type="text" name="nombre" required>
+                                                            <label for="email">Email:</label>
+                                                            <input type="email" name="email" required>
+                                                            <!-- Agrega más campos según sea necesario -->
+                                                            <button type="submit">Completar Reserva</button>
+                                                        `;
+
+                                            // Manejar el envío del formulario
+                                            form.addEventListener('submit', function (event) {
+                                                event.preventDefault();
+                                                // Aquí puedes enviar los datos del formulario al servidor si es necesario
+                                                // Puedes redirigir al usuario a otra página después de completar el formulario
+                                                // window.location.href = 'otra_pagina.php';
+                                            });
+
+                                            // Agregar el formulario al documento
+                                            document.body.appendChild(form);
+                                        }
                                     })
                                     .catch(error => {
                                         console.error('Error al realizar la reserva:', error);

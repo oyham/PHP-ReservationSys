@@ -2,7 +2,7 @@
 
 - Formulario con fecha de inicio, fin, y tipo de habitacion (opcional) para verificar disponibilidad. ✔️
 - Muestra habitaciones disponibles. ✔️
-- Los usuarios pueden seleccionar la habitación.
+- Los usuarios pueden seleccionar la habitación. ✔️
 
 2- Proceso de Reserva (Backend):
 
