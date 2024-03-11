@@ -7,8 +7,8 @@
 2- Proceso de Reserva (Backend):
 
 - Verifica la disponibilidad de la habitación para las fechas seleccionadas. ✔️
-- Registra la reserva en la base de datos y actualiza el estado de la habitación.
-- Envía un correo electrónico de confirmación al usuario (PHPMailer).
+- Registra la reserva en la base de datos y actualiza el estado de la habitación. ❗
+- Envía un correo electrónico de confirmación al usuario (PHPMailer). ❗
 
 3- Calendario de Reservas (Backend y Frontend):
 
@@ -33,6 +33,8 @@ CREATE TABLE reservas (
     id_habitacion INT,
     fecha_inicio DATE,
     fecha_fin DATE,
+    estado VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)
 );
 
