@@ -46,17 +46,38 @@ include 'includes/header.php';
                             <?= $room['tipo'] ?>
                         </td>
                         <td>
-                            <button onclick="reservarHabitacion(this)" class="reservar-btn" data-habitacion-id="<?= $room['id'] ?>"
+                            <button onclick="innerForm(this)" class="reservar-btn" data-habitacion-id="<?= $room['id'] ?>"
                                 data-fecha-inicio="<?= $response['fechaInicio'] ?>"
                                 data-fecha-fin="<?= $response['fechaFin'] ?>">Reservar</button>
                         </td>
                         <script>
-                            // Función para manejar el clic del botón
-                            function reservarHabitacion(btn) {
-                                // Obtener los datos de la habitación desde los atributos del botón
+                            function innerForm(btn) {
                                 const habitacionId = btn.getAttribute('data-habitacion-id');
                                 const fechaInicio = btn.getAttribute('data-fecha-inicio');
                                 const fechaFin = btn.getAttribute('data-fecha-fin');
+                                const form = document.createElement('form');
+                                form.innerHTML =
+                                    `<h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" name="nombre" required>
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" required>
+                                    <!-- Agrega más campos según sea necesario -->
+                                    <button type="submit">Completar Reserva</button>`;
+
+                                // Manejar el envío del formulario
+                                form.addEventListener('submit', function (event) {
+                                    event.preventDefault();
+                                    completarReserva();
+                                });
+
+                                // Agregar el formulario al documento
+                                document.body.appendChild(form);
+                            }
+                            // Función para manejar el clic del botón
+                            function completarReserva(data) {
+                                // Obtener los datos de la habitación desde los atributos del botón
+
 
                                 // Realizar la reserva utilizando JavaScript (solicitud AJAX)
                                 fetch('room_reservation.php', {
@@ -74,30 +95,6 @@ include 'includes/header.php';
                                     .then(data => {
                                         // Manejar la respuesta según sea necesario
                                         console.log(data);
-                                        // Crear el formulario si la respuesta está en estado 'pending'
-                                        if (data.status === 'pending') {
-                                            const form = document.createElement('form');
-                                            form.innerHTML = `
-                                                            <h2>Formulario de Completar Datos</h2>
-                                                            <label for="nombre">Nombre:</label>
-                                                            <input type="text" name="nombre" required>
-                                                            <label for="email">Email:</label>
-                                                            <input type="email" name="email" required>
-                                                            <!-- Agrega más campos según sea necesario -->
-                                                            <button type="submit">Completar Reserva</button>
-                                                        `;
-
-                                            // Manejar el envío del formulario
-                                            form.addEventListener('submit', function (event) {
-                                                event.preventDefault();
-                                                // Aquí puedes enviar los datos del formulario al servidor si es necesario
-                                                // Puedes redirigir al usuario a otra página después de completar el formulario
-                                                // window.location.href = 'otra_pagina.php';
-                                            });
-
-                                            // Agregar el formulario al documento
-                                            document.body.appendChild(form);
-                                        }
                                     })
                                     .catch(error => {
                                         console.error('Error al realizar la reserva:', error);
