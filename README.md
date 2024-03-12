@@ -34,6 +34,8 @@ CREATE TABLE reservas (
     fecha_inicio DATE,
     fecha_fin DATE,
     estado VARCHAR(20),
+    usuario VARCHAR(50),
+    email VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)
 );

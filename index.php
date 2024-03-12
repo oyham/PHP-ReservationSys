@@ -58,28 +58,30 @@ include 'includes/header.php';
                                 const form = document.createElement('form');
                                 form.innerHTML =
                                     `<h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" name="nombre" required>
-                                    <label for="email">Email:</label>
-                                    <input type="email" name="email" required>
-                                    <!-- Agrega más campos según sea necesario -->
-                                    <button type="submit">Completar Reserva</button>`;
+                                                                            <label for="nombre">Nombre:</label>
+                                                                            <input type="text" name="nombre" required>
+                                                                            <label for="email">Email:</label>
+                                                                            <input type="email" name="email" required>
+                                                                            <button type="submit">Completar Reserva</button>`;
 
-                                // Manejar el envío del formulario
+                                document.body.appendChild(form);
+
                                 form.addEventListener('submit', function (event) {
                                     event.preventDefault();
-                                    completarReserva();
+                                    const nombre = form.querySelector('input[name="nombre"]').value;
+                                    const email = form.querySelector('input[name="email"]').value;
+
+                                    completarReserva({
+                                        habitacionId: habitacionId,
+                                        fechaInicio: fechaInicio,
+                                        fechaFin: fechaFin,
+                                        estado: 'pendiente',
+                                        usuario: nombre,
+                                        email: email
+                                    });
                                 });
-
-                                // Agregar el formulario al documento
-                                document.body.appendChild(form);
                             }
-                            // Función para manejar el clic del botón
                             function completarReserva(data) {
-                                // Obtener los datos de la habitación desde los atributos del botón
-
-
-                                // Realizar la reserva utilizando JavaScript (solicitud AJAX)
                                 fetch('room_reservation.php', {
                                     method: 'POST',
                                     headers: {
@@ -93,7 +95,6 @@ include 'includes/header.php';
                                 })
                                     .then(response => response.json())
                                     .then(data => {
-                                        // Manejar la respuesta según sea necesario
                                         console.log(data);
                                     })
                                     .catch(error => {
