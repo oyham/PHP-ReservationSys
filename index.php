@@ -57,49 +57,22 @@ include 'includes/header.php';
                                 const fechaFin = btn.getAttribute('data-fecha-fin');
                                 const form = document.createElement('form');
                                 form.innerHTML =
-                                    `<h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
-                                                                            <label for="nombre">Nombre:</label>
-                                                                            <input type="text" name="nombre" required>
-                                                                            <label for="email">Email:</label>
-                                                                            <input type="email" name="email" required>
-                                                                            <button type="submit">Completar Reserva</button>`;
+                                    `
+                                                <form action="room_reservation.php" method="post">
+                                                    <input type="hidden" name="habitacionId" value="${habitacionId}">
+                                                    <input type="hidden" name="fechaInicio" value="${fechaInicio}">
+                                                    <input type="hidden" name="fechaFin" value="${fechaFin}">
+                                                    <h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
+                                                    <label for="nombre">Nombre:</label>
+                                                    <input type="text" name="nombre" required>
+                                                    <label for="email">Email:</label>
+                                                    <input type="email" name="email" required>
+                                                    <button type="submit">Completar Reserva</button>
+                                                </form>
+                                                 `;
 
                                 document.body.appendChild(form);
 
-                                form.addEventListener('submit', function (event) {
-                                    event.preventDefault();
-                                    const nombre = form.querySelector('input[name="nombre"]').value;
-                                    const email = form.querySelector('input[name="email"]').value;
-
-                                    completarReserva({
-                                        habitacionId: habitacionId,
-                                        fechaInicio: fechaInicio,
-                                        fechaFin: fechaFin,
-                                        estado: 'pendiente',
-                                        usuario: nombre,
-                                        email: email
-                                    });
-                                });
-                            }
-                            function completarReserva(data) {
-                                fetch('room_reservation.php', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({
-                                        habitacionId: habitacionId,
-                                        fechaInicio: fechaInicio,
-                                        fechaFin: fechaFin,
-                                    }),
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log(data);
-                                    })
-                                    .catch(error => {
-                                        console.error('Error al realizar la reserva:', error);
-                                    });
                             }
                         </script>
                     </tr>
