@@ -55,24 +55,32 @@ include 'includes/header.php';
                                 const habitacionId = btn.getAttribute('data-habitacion-id');
                                 const fechaInicio = btn.getAttribute('data-fecha-inicio');
                                 const fechaFin = btn.getAttribute('data-fecha-fin');
+
+                                // Eliminar cualquier formulario existente
+                                const existingForm = document.querySelector('.reservation-form');
+                                if (existingForm) {
+                                    existingForm.remove();
+                                }
+
+                                // Crear el nuevo formulario
                                 const form = document.createElement('form');
-                                form.innerHTML =
-                                    `
-                                                <form action="room_reservation.php" method="post">
-                                                    <input type="hidden" name="habitacionId" value="${habitacionId}">
-                                                    <input type="hidden" name="fechaInicio" value="${fechaInicio}">
-                                                    <input type="hidden" name="fechaFin" value="${fechaFin}">
-                                                    <h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
-                                                    <label for="nombre">Nombre:</label>
-                                                    <input type="text" name="nombre" required>
-                                                    <label for="email">Email:</label>
-                                                    <input type="email" name="email" required>
-                                                    <button type="submit">Completar Reserva</button>
-                                                </form>
-                                                 `;
+                                form.classList.add('reservation-form');
+                                form.action = 'room_reservation.php';
+                                form.method = 'post';
+
+                                form.innerHTML = `
+                                                        <input type="hidden" name="habitacionId" value="${habitacionId}">
+                                                        <input type="hidden" name="fechaInicio" value="${fechaInicio}">
+                                                        <input type="hidden" name="fechaFin" value="${fechaFin}">
+                                                        <h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
+                                                        <label for="nombre">Nombre:</label>
+                                                        <input type="text" name="nombre" required>
+                                                        <label for="email">Email:</label>
+                                                        <input type="email" name="email" required>
+                                                        <button type="submit">Completar Reserva</button>
+                                                    `;
 
                                 document.body.appendChild(form);
-
                             }
                         </script>
                     </tr>
