@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+include ('db.php');
 include 'includes/header.php';
 ?>
 <main>
@@ -22,8 +22,9 @@ include 'includes/header.php';
 
         <input type="submit" value="Verificar Disponibilidad">
     </form>
+
     <?php
-    if (isset($_SESSION['availability_response'])) {
+    if (isset ($_SESSION['availability_response'])) {
         $response = json_decode($_SESSION['availability_response'], true);
 
         if ($response['status'] === 'success') {
@@ -69,16 +70,16 @@ include 'includes/header.php';
                                 form.method = 'post';
 
                                 form.innerHTML = `
-                                                        <input type="hidden" name="habitacionId" value="${habitacionId}">
-                                                        <input type="hidden" name="fechaInicio" value="${fechaInicio}">
-                                                        <input type="hidden" name="fechaFin" value="${fechaFin}">
-                                                        <h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
-                                                        <label for="nombre">Nombre:</label>
-                                                        <input type="text" name="nombre" required>
-                                                        <label for="email">Email:</label>
-                                                        <input type="email" name="email" required>
-                                                        <button type="submit">Completar Reserva</button>
-                                                    `;
+                                                                                                                                                                    <input type="hidden" name="habitacionId" value="${habitacionId}">
+                                                                                                                                                                    <input type="hidden" name="fechaInicio" value="${fechaInicio}">
+                                                                                                                                                                    <input type="hidden" name="fechaFin" value="${fechaFin}">
+                                                                                                                                                                    <h2>Completa los datos para la reserva desde ${fechaInicio} a ${fechaFin}</h2>
+                                                                                                                                                                    <label for="nombre">Nombre:</label>
+                                                                                                                                                                    <input type="text" name="nombre" required>
+                                                                                                                                                                    <label for="email">Email:</label>
+                                                                                                                                                                    <input type="email" name="email" required>
+                                                                                                                                                                    <button type="submit">Completar Reserva</button>
+                                                                                                                                                                `;
 
                                 document.body.appendChild(form);
                             }

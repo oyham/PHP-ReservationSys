@@ -12,12 +12,12 @@
 
 3- Calendario de Reservas (Backend y Frontend):
 
-- Muestra un calendario con las fechas ocupadas y disponibles.
-- Permite a los usuarios realizar nuevas reservas o cancelar las existentes.
+- Muestra un calendario con las fechas ocupadas y disponibles.✔️
+- Permite a los usuarios realizar nuevas reservas o cancelar las existentes.❗
 
 4- Panel de Administración (Backend):
 
-- Proporciona una interfaz para que los administradores gestionen habitaciones, reservas y usuarios.
+- Proporciona una interfaz para que los administradores gestionen habitaciones, reservas y usuarios.❗
 
 SQL:
 

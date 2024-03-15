@@ -18,4 +18,17 @@
     <div class="container d-flex justify-content-center">
       <title class="navbar-brand">Sistema de Reservación</title>
     </div>
+    <div class="">
+      <button class="btn btn-secondary" onclick="index()">Inicio</button>
+      <button class="btn btn-primary" onclick="myBookings()">Mis reservas</button>
+    </div>
+    <script>
+      function myBookings() {
+        // Redirige al archivo PHP que muestra las reservas
+        window.location.href = 'my_bookings.php';
+      }
+      function index() {
+        window.location.href = 'index.php'
+      }
+    </script>
   </nav>
